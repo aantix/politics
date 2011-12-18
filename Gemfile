@@ -47,9 +47,9 @@ group :test do
   gem "guard-spork"
   gem 'factory_girl', '>= 1.3.2'
 
-  if RUBY_PLATFORM.downcase.include?("darwin")
+  #if RUBY_PLATFORM.downcase.include?("darwin")
     gem 'rb-fsevent', ">= 0.4.3.1"
-  end
+  #end
   gem "rspec"
   gem "guard-rspec"
 end
