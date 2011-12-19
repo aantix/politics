@@ -1,7 +1,25 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+Party.find_or_create_by_name('Democrats') {|c| c.id = 1; c.save}
+Party.find_or_create_by_name('Republicans'){|c| c.id = 2; c.save}
+
+Candidate.find_or_create_by_name('Barack Obama'){|c| c.id = 1; c.party_id = 1; c.order = 1; c.save}
+
+Candidate.find_or_create_by_name('Newt Gingrich'){|c| c.id = 2; c.party_id = 2; c.order = 1; c.save}
+Candidate.find_or_create_by_name('Mitt Romney'){|c| c.id = 3; c.party_id = 2; c.order = 2; c.save}
+Candidate.find_or_create_by_name('Michelle Bachmann'){|c| c.id = 4; c.party_id = 2; c.order = 3; c.save}
+Candidate.find_or_create_by_name('Ron Paul'){|c| c.id = 5; c.party_id = 2; c.order = 4; c.save}
+Candidate.find_or_create_by_name('Rick Santorum'){|c| c.id = 6; c.party_id = 2; c.order =5; c.save}
+Candidate.find_or_create_by_name('Rick Perry'){|c| c.id = 7; c.party_id = 2; c.order = 6; c.save}
+Candidate.find_or_create_by_name('Jon Huntsman Jr'){|c| c.id = 8; c.party_id = 2; c.order = 7; c.save}
+
+Category.find_or_create_by_name('The Economy'){|c| c.id = 1; c.save}
+Category.find_or_create_by_name('Foreign Policy'){|c| c.id = 2; c.save}
+Category.find_or_create_by_name('Health Care'){|c| c.id = 3; c.save}
+Category.find_or_create_by_name('Illegal Immigration'){|c| c.id = 4; c.save}
+Category.find_or_create_by_name('Taxes'){|c| c.id = 5; c.save}
+Category.find_or_create_by_name('Abortion'){|c| c.id = 6; c.save}
+Category.find_or_create_by_name('Education'){|c| c.id = 7; c.save}
+Category.find_or_create_by_name('Global Warming'){|c| c.id = 8; c.save}
+Category.find_or_create_by_name('War on Drugs'){|c| c.id = 9; c.save}
+Category.find_or_create_by_name('Civil Liberties'){|c| c.id = 10; c.save}
+Category.find_or_create_by_name('National Security'){|c| c.id = 11; c.save}
+Category.find_or_create_by_name('Second Amendment/Gun Control'){|c| c.id = 12; c.save}

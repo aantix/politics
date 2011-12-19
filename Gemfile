@@ -8,11 +8,12 @@ gem 'rails', '3.1.3'
 
 gem 'mysql2'
 gem 'turkee', :git => 'git://github.com/aantix/turkee.git', :branch => 'turkee_rails31'
-gem 'youtube_search'
+gem 'youtube_search', :git => 'git@github.com:aantix/youtube_search.git'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+  #gem 'bootstrap-sass'
   gem 'sass-rails' #,   :git => 'git://github.com/rails/sass-rails'
   gem 'coffee-rails' #, :git => 'git://github.com/rails/coffee-rails'
   gem 'uglifier'

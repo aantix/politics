@@ -16,7 +16,8 @@ class Video < ActiveRecord::Base
       Video.create(:title        => video.title,
                    :url          => video.video_id,
                    :description  => video.content,
-                   :published_at => video.published) rescue next
+                   :published_at => video.published,
+                   :duration     => video.duration) rescue next
     end 
   end
 

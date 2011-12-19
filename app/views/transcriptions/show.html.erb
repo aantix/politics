@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Video segment:</b>
+  <%= @transcription.video_segment_id %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @transcription.category_id %>
+</p>
+
+<p>
+  <b>Transcription:</b>
+  <%= @transcription.transcription %>
+</p>
+
+<p>
+  <b>Gold num1:</b>
+  <%= @transcription.gold_num1 %>
+</p>
+
+<p>
+  <b>Gold num2:</b>
+  <%= @transcription.gold_num2 %>
+</p>
+
+<p>
+  <b>Gold sum:</b>
+  <%= @transcription.gold_sum %>
+</p>
+
+
+<%= link_to 'Edit', edit_transcription_path(@transcription) %> |
+<%= link_to 'Back', transcriptions_path %>

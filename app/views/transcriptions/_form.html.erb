@@ -1,0 +1,41 @@
+<%= form_for(@transcription) do |f| %>
+  <% if @transcription.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transcription.errors.count, "error") %> prohibited this transcription from being saved:</h2>
+
+      <ul>
+      <% @transcription.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field clearfix">
+    <%= f.label :video_segment_id %><br />
+    <%= f.number_field :video_segment_id, :class => 'input' %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id %><br />
+    <%= f.number_field :category_id %>
+  </div>
+  <div class="field">
+    <%= f.label :transcription %><br />
+    <%= f.text_area :transcription %>
+  </div>
+  <div class="field">
+    <%= f.label :gold_num1 %><br />
+    <%= f.number_field :gold_num1 %>
+  </div>
+  <div class="field">
+    <%= f.label :gold_num2 %><br />
+    <%= f.number_field :gold_num2 %>
+  </div>
+  <div class="field">
+    <%= f.label :gold_sum %><br />
+    <%= f.number_field :gold_sum %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
