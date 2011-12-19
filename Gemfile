@@ -14,6 +14,7 @@ gem 'youtube_search', :git => 'git@github.com:aantix/youtube_search.git'
 # in production environments by default.
 group :assets do
   #gem 'bootstrap-sass'
+  gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
   gem 'sass-rails' #,   :git => 'git://github.com/rails/sass-rails'
   gem 'coffee-rails' #, :git => 'git://github.com/rails/coffee-rails'
   gem 'uglifier'
