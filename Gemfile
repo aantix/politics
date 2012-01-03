@@ -8,7 +8,8 @@ gem 'rails', '3.1.3'
 
 gem 'mysql2'
 gem 'turkee', :git => 'git://github.com/aantix/turkee.git', :branch => 'turkee_rails31'
-gem 'youtube_search', :git => 'git@github.com:aantix/youtube_search.git'
+gem 'youtube_search'
+gem 'nested_form', :path => "/Users/jjones/Projects/nested_form"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -34,6 +35,8 @@ gem 'jquery-rails'
 
 group :development do
   gem 'heroku'
+  gem "rspec"
+  gem "rspec-rails"
 end
 
 group :production do
@@ -53,9 +56,8 @@ group :test do
     gem 'rb-fsevent', ">= 0.4.3.1"
   #end
   gem "rspec"
+  gem "rspec-rails"
   gem "guard-rspec"
+  gem "database_cleaner"
 end
 
-group :test,:development do
-  gem "rspec-rails"
-end

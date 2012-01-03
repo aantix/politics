@@ -1,0 +1,55 @@
+<div id="player">
+	You need Flash player 8+ and JavaScript enabled to view this video.
+</div>
+
+<script type="text/javascript">
+	var id     = "<%= video_segment.video.video_id %>";
+	var start  = <%= video_segment.start_of %>;
+	var end    = <%= video_segment.end_of %>;
+	var splice = true;
+	var played = false;
+	var url    = "http://www.youtube.com/v/" + id + "&start=" + start + "&end=" + end + "&autoplay=1&enablejsapi=1";
+
+	swfobject.embedSWF(url, "player", "640", "350", "8", null, null, { allowScriptAccess: "always" }, { id: "video" });
+
+	function onYouTubePlayerReady(playerId)
+	{
+		player = document.getElementById("video");
+
+		player.addEventListener("onStateChange", "playerStateChange");
+
+		setInterval(checkYouTubePlayHead, 1000);
+	}
+
+	function playerStateChange(state)
+	{
+		//if(state == 5)
+		//	player.seekTo(start, true);
+	}
+
+	function checkYouTubePlayHead()
+	{
+		current = player.getCurrentTime();
+
+		if((current >= end) && splice) {
+			player.seekTo(start, true);
+			player.pauseVideo();
+		}
+
+		if(current > start)
+			played = true;
+	}
+
+	function playAll()
+	{
+		splice = false;
+		player.seekTo(0, true);
+	}
+
+	function playSplice()
+	{
+		splice = true;
+		player.seekTo(start, true);
+	}
+
+</script>

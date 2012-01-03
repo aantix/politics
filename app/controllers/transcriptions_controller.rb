@@ -2,7 +2,7 @@ class TranscriptionsController < ApplicationController
   # GET /transcriptions
   # GET /transcriptions.json
   def index
-    @transcriptions = Transcription.all
+    @transcriptions   = Transcription.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -21,15 +21,14 @@ class TranscriptionsController < ApplicationController
     end
   end
 
-  # GET /transcriptions/new
-  # GET /transcriptions/new.json
   def new
-    @transcription = Transcription.new
+    @transcription        = Transcription.new
+    @categories           = Category.select_items
+    @candidates           = Candidate.all_sorted
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @transcription }
-    end
+    @transcription.video_segment = VideoSegment.find(params[:video_segment_id]) rescue nil
+
+    raise "Must provide a video segment id" if @transcription.video_segment_id.nil?
   end
 
   # GET /transcriptions/1/edit

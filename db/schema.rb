@@ -11,15 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111219013301) do
+ActiveRecord::Schema.define(:version => 20120103101646) do
 
   create_table "candidates", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "party_id"
     t.integer  "order"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image"
+    t.boolean  "searchable",  :default => true
   end
 
   create_table "categories", :force => true do |t|
@@ -28,16 +30,7 @@ ActiveRecord::Schema.define(:version => 20111219013301) do
     t.datetime "updated_at"
   end
 
-  create_table "parties", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "transcriptions", :force => true do |t|
-    t.integer  "video_segment_id"
-    t.integer  "category_id"
-    t.text     "transcription"
+  create_table "human_validations", :force => true do |t|
     t.integer  "gold_num1"
     t.integer  "gold_num2"
     t.integer  "gold_sum"
@@ -45,23 +38,60 @@ ActiveRecord::Schema.define(:version => 20111219013301) do
     t.datetime "updated_at"
   end
 
+  create_table "parties", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sex_it_up_images", :force => true do |t|
+    t.string   "image_search_term"
+    t.string   "image_original_url"
+    t.string   "image_url"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  create_table "transcription_segments", :force => true do |t|
+    t.integer  "transcription_id"
+    t.integer  "candidate_id"
+    t.text     "transcription"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transcriptions", :force => true do |t|
+    t.integer  "video_segment_id"
+    t.integer  "category_id"
+    t.integer  "gold_sum"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "video_segments", :force => true do |t|
-    t.integer  "video_id"
-    t.integer  "offset"
-    t.integer  "duration"
+    t.integer  "video_id",            :null => false
+    t.integer  "offset",              :null => false
+    t.integer  "duration",            :null => false
+    t.integer  "human_validation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "videos", :force => true do |t|
     t.string   "title"
-    t.string   "video_id"
     t.text     "description"
-    t.string   "url"
+    t.string   "url",          :null => false
+    t.string   "video_id",     :null => false
     t.datetime "published_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "duration"
+    t.integer  "candidate_id"
   end
+
+  add_index "videos", ["url"], :name => "index_videos_on_url", :unique => true
+  add_index "videos", ["video_id"], :name => "index_videos_on_video_id", :unique => true
 
 end

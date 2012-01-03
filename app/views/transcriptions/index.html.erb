@@ -2,12 +2,8 @@
 
 <table>
   <tr>
-    <th>Video segment</th>
     <th>Category</th>
     <th>Transcription</th>
-    <th>Gold num1</th>
-    <th>Gold num2</th>
-    <th>Gold sum</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,11 +12,8 @@
 <% @transcriptions.each do |transcription| %>
   <tr>
     <td><%= transcription.video_segment_id %></td>
-    <td><%= transcription.category_id %></td>
+    <td><%= transcription.category.name %></td>
     <td><%= transcription.transcription %></td>
-    <td><%= transcription.gold_num1 %></td>
-    <td><%= transcription.gold_num2 %></td>
-    <td><%= transcription.gold_sum %></td>
     <td><%= link_to 'Show', transcription %></td>
     <td><%= link_to 'Edit', edit_transcription_path(transcription) %></td>
     <td><%= link_to 'Destroy', transcription, confirm: 'Are you sure?', method: :delete %></td>

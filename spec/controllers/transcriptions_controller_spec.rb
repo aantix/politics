@@ -18,7 +18,7 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe TranscriptionsController do
+describe TranscriptionsController, :type => :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Transcription. As you add validations to Transcription, be sure to
@@ -44,8 +44,12 @@ describe TranscriptionsController do
   end
 
   describe "GET new" do
+    before(:each) do
+      @video_segment = Factory.create(:video_segment)
+    end
+
     it "assigns a new transcription as @transcription" do
-      get :new
+      get :new, :video_segment_id => @video_segment.id
       assigns(:transcription).should be_a_new(Transcription)
     end
   end

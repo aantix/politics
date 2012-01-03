@@ -1,6 +1,40 @@
+<% if @disabled %>
+    <div class="row">
+      <div class="span16">
+        <h3>
+          <%= image_tag 'stop_sign.gif' %>
+          &nbsp;&nbsp;Click the <span class="alt">"Accept Hit"</span> button above.
+        </h3>
+      </div>
+    </div>
+<% end %>
+
+
+<div class="row alert-message block-message warning">
+  <div class="span16">
+    <h2>
+      Directions:
+    </h2>
+    <p>
+        I need <i>your</i> HELP.  Please watch the <%=  @transcription.video_segment.duration %> second video segment below.
+    </p>
+    
+    <p>
+        For every candidate that speaks, select the "add speaker" button, select who is speaking, and transcribe their text.
+    </p>
+    
+    <p>
+        I cannot pay much but I plan to provide these transcriptions free to the public.  This should be a big help to the
+        hearing impaired.
+    </p>
+
+  </div>
+</div>
+
 <div class="row">
   <div class="span16">
-    <%= turkee_form_for(@transcription, params) do |f| %>
+    <%= turkee_nested_form_for(@transcription, params) do |f| %>
+    <%# nested_form_for @transcription do |f| %>
         <fieldset>
           <% if @transcription.errors.any? %>
               <div id="error_explanation">
@@ -15,52 +49,60 @@
               </div>
           <% end %>
 
-          <div class="clearfix">
-            <%= f.label :video_segment_id %>
-            <div class="input">
-              <%= f.number_field :video_segment_id, :class => 'xlarge' %>
-            </div>
-          </div>
-          <div class="clearfix">
-            <%= f.label :category_id %>
-            <div class="input">
-              <%= f.number_field :category_id %>
-            </div>
+          <%= render :partial => 'video', :locals => {:video_segment => @transcription.video_segment} %>
 
-          </div>
-          <div class="clearfix">
-            <%= f.label :transcription %>
-            <div class="input">
-              <%= f.text_area :transcription %>
-            </div>
+          <div class="alert-message block-message success">
+            <%= f.hidden_field :video_segment_id, :value => @transcription.video_segment.id %>
 
-          </div>
-          <div class="clearfix">
-            <%= f.label :gold_num1 %>
-            <div class="input">
-              <%= f.number_field :gold_num1 %>
-            </div>
+            <p>
+              <%= f.link_to_add "Add Speaker", :transcription_segments, :class => 'btn large' %>
+            </p>
 
-          </div>
-          <div class="clearfix">
-            <%= f.label :gold_num2 %>
-            <div class="input">
-              <%= f.number_field :gold_num2 %>
-            </div>
+            <%= f.fields_for :transcription_segments do |segment| %>
+                <div class="row">
+                  <div class="clearfix fields">
+                    <%= f.label :candidate_id, "Who's speaking?" %>
 
-          </div>
-          <div class="clearfix">
-            <%= f.label :gold_sum %>
-            <div class="input">
-              <%= f.number_field :gold_sum %>
-            </div>
+                    <div class="input">
+                        <% @candidates.each do |c| %>
+                          <div class="candidate">
+                              <%= image_tag("candidates/#{c.image}", :alt => c.name, :title => c.name) %>
+                              <%= segment.radio_button :candidate_id, c.id, :checked => (c == @transcription.candidate) %><br/>
+                          </div>
+                        <% end %>
+                        <%= segment.radio_button :candidate_id, c.id, :checked => (c == @transcription.candidate) %><br/>
 
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="clearfix fields">
+                    <%= f.label :transcription %>
+                    <div class="input">
+                      <%= segment.text_area :transcription, :class => 'transcription_segments_transcription' %>
+                    </div>
+                  </div>
+                </div>
+
+                <%= segment.link_to_remove "Remove this Speaker" %>
+            <% end %>
           </div>
+
+          <div class="clearfix">
+            <%= f.label :category_id, "What was the topic of this video segment?" %>
+            <div class="input">
+              <%= f.select :category_id,  @categories %>
+            </div>
+          </div>
+
           <div class="actions">
-            <%= f.submit(nil,:class => 'btn primary') %>
+            <%= f.submit(nil, :class => 'btn large primary') %>
           </div>
+
         </fieldset>
     <% end %>
 
   </div>
+
 </div>
