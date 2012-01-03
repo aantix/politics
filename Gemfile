@@ -9,7 +9,7 @@ gem 'rails', '3.1.3'
 gem 'mysql2'
 gem 'turkee', :git => 'git://github.com/aantix/turkee.git', :branch => 'turkee_rails31'
 gem 'youtube_search'
-gem 'nested_form', :path => "/Users/jjones/Projects/nested_form"
+gem 'nested_form', :git => "git@github.com:aantix/nested_form.git"
 
 # Gems used only for assets and not required
 # in production environments by default.

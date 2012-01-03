@@ -9,6 +9,12 @@ GIT
       rturk (>= 2.3.0)
 
 GIT
+  remote: git@github.com:aantix/nested_form.git
+  revision: cf722a8a20db881c8c81176cfcc8e3a1edbe6142
+  specs:
+    nested_form (0.1.1)
+
+GIT
   remote: http://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: b747bae72b55122dd326067a5f7b624c68163f15
   specs:
@@ -17,11 +23,6 @@ GIT
       jquery-rails (>= 1.0)
       less-rails (~> 2.1.0)
       railties
-
-PATH
-  remote: /Users/jjones/Projects/nested_form
-  specs:
-    nested_form (0.1.1)
 
 GEM
   remote: http://rubygems.org/
