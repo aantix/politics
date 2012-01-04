@@ -13,7 +13,7 @@ Candidate.find_or_create_by_name('Rick Perry'){|c| c.id = 7; c.party_id = 2; c.o
 Candidate.find_or_create_by_name('Jon Huntsman Jr'){|c| c.id = 8; c.party_id = 2; c.order = 7; c.image = 'jon_huntsman.jpg';  c.save}
 
 Candidate.find_or_create_by_name('Interviewer'){|c| c.id = 9; c.party_id = 3; c.order = 1; c.save}
-Candidate.find_or_create_by_name('Nobody\'s Speaking'){|c| c.id = 8; c.party_id = 3; c.order = 2; c.save}
+Candidate.find_or_create_by_name('Nobody\'s Speaking'){|c| c.id = 10; c.party_id = 3; c.order = 2; c.save}
 
 Category.find_or_create_by_name('The Economy'){|c| c.id = 1; c.save}
 Category.find_or_create_by_name('Foreign Policy'){|c| c.id = 2; c.save}
