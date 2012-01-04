@@ -11,8 +11,10 @@ class Video < ActiveRecord::Base
   end
   
   def self.cache_latest
+    puts "Caching latest videos..."
     candidates = Candidate.valid
     candidates.each do |candidate|
+      puts " Searching for #{candidate.name}"
       search_all(candidate.name).tap{|videos| cache_search(videos, candidate)}
     end
   end
