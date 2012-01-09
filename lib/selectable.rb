@@ -6,7 +6,7 @@ module Selectable
   end
 
   def self.included(base)
-    base.scope :all_sorted, :order => :name
+    base.scope :all_sorted, :order => [:id]
     base.extend(ClassMethods)
   end
 end

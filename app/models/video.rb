@@ -9,6 +9,10 @@ class Video < ActiveRecord::Base
       return params["v"][0] if params.has_key?("v")
     end
   end
+
+  def url
+    "http://www.youtube.com/watch?v=#{video_id}"
+  end
   
   def self.cache_latest
     puts "Caching latest videos..."
@@ -24,10 +28,10 @@ class Video < ActiveRecord::Base
   def self.cache_search(videos, candidate)
     videos.each do |video|
       next unless video["embeddable"]
-
+      
       # Creation will fail if video_id isn't unique
       v = Video.create(:title        => video["title"],
-                       :url          => video["video_id"],
+                       :video_id     => video["video_id"],
                        :description  => video["content"],
                        :published_at => video["published"],
                        :duration     => video["duration"],

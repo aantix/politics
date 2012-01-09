@@ -44,16 +44,6 @@ ActiveRecord::Schema.define(:version => 20120103101646) do
     t.datetime "updated_at"
   end
 
-  create_table "sex_it_up_images", :force => true do |t|
-    t.string   "image_search_term"
-    t.string   "image_original_url"
-    t.string   "image_url"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-  end
-
   create_table "transcription_segments", :force => true do |t|
     t.integer  "transcription_id"
     t.integer  "candidate_id"
@@ -82,7 +72,6 @@ ActiveRecord::Schema.define(:version => 20120103101646) do
   create_table "videos", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "url",          :null => false
     t.string   "video_id",     :null => false
     t.datetime "published_at"
     t.datetime "created_at"
@@ -91,7 +80,6 @@ ActiveRecord::Schema.define(:version => 20120103101646) do
     t.integer  "candidate_id"
   end
 
-  add_index "videos", ["url"], :name => "index_videos_on_url", :unique => true
   add_index "videos", ["video_id"], :name => "index_videos_on_video_id", :unique => true
 
 end

@@ -28,6 +28,21 @@ Spork.prefork do
     # config.mock_with :rr
     config.mock_with :rspec
 
+    config.use_transactional_fixtures = false
+
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.clean_with(:truncation)
+    end
+
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
+
+    config.after(:each) do
+      DatabaseCleaner.clean
+    end
+
     #config.before(:suite) do
     #  DatabaseCleaner.strategy = :transaction
     #  DatabaseCleaner.clean_with(:truncation)
@@ -46,14 +61,12 @@ Spork.prefork do
     # If you're not using ActiveRecord, or you'd prefer not to run each of your
     # examples within a transaction, comment the following line or assign false
     # instead of true.
-    config.use_transactional_fixtures = true
+    #config.use_transactional_fixtures = true
   end
 
 end
 
 Spork.each_run do
-  # This code will be run each time you run your specs.
-  DatabaseCleaner.clean
 
   FactoryGirl.find_definitions
 

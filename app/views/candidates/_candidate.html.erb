@@ -1,0 +1,9 @@
+<div class="span4">
+  <%=  f.radio_button :candidate_id, candidate.id, :checked => (candidate == transcription.candidate) %>
+
+  <% if candidate.image? %>
+    <%=  image_tag("candidates/#{candidate.image}", :alt => candidate.name, :title => candidate.name) %>
+  <% else %>
+    <%= candidate.name %>
+  <% end %>
+</div>

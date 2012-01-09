@@ -18,9 +18,13 @@ The loving individuals of Mechnical Turk and the Rails Turk integration gem, {Tu
 
 * Start the server with 'rails s'
 
-* Go to {http://localhost:3000}[http://localhost:3000]
+* Go to http://localhost:3000/
 
 There you will see the form that is presented to the Turkers.  That is all I have thus far.
+
+
+== Requesting Work from the Turkers
+rake turkee:post_hit["https://www.yourapp.com","Please complete our survey","Tell us your favorite color.","Survey",100,0.05,2]
 
 
 == Copyright

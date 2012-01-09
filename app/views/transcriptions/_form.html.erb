@@ -20,7 +20,7 @@
     </p>
     
     <p>
-        For every candidate that speaks, select the "add speaker" button, select who is speaking, and transcribe their text.
+        For every candidate that speaks, select the <span class='btn large success'>add speaker</span> button, select who is speaking, and transcribe their text.
     </p>
     
     <p>
@@ -51,11 +51,11 @@
 
           <%= render :partial => 'video', :locals => {:video_segment => @transcription.video_segment} %>
 
-          <div class="alert-message block-message success">
+          <div class="alert-message block-message warning">
             <%= f.hidden_field :video_segment_id, :value => @transcription.video_segment.id %>
 
             <p>
-              <%= f.link_to_add "Add Speaker", :transcription_segments, :class => 'btn large' %>
+              <%= f.link_to_add "Add Speaker", :transcription_segments, :class => 'btn large success' %>
             </p>
 
             <%= f.fields_for :transcription_segments do |segment| %>
@@ -64,14 +64,15 @@
                     <%= f.label :candidate_id, "Who's speaking?" %>
 
                     <div class="input">
-                        <% @candidates.each do |c| %>
-                          <div class="candidate">
-                              <%= image_tag("candidates/#{c.image}", :alt => c.name, :title => c.name) %>
-                              <%= segment.radio_button :candidate_id, c.id, :checked => (c == @transcription.candidate) %><br/>
-                          </div>
+                        <% @candidates.in_groups_of(4).each do |candidate_group| %>
+                          <div class="row">
+                              <% candidate_group.each do |c| %>
+                                  <%= render :partial => 'candidates/candidate',
+                                             :object => c,
+                                             :locals => {:f => segment, :transcription => @transcription} %>
+                              <% end %>
+                           </div>
                         <% end %>
-                        <%= segment.radio_button :candidate_id, c.id, :checked => (c == @transcription.candidate) %><br/>
-
                     </div>
                   </div>
                 </div>

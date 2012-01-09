@@ -57,6 +57,7 @@ group :test do
   #end
   gem "rspec"
   gem "rspec-rails"
+  gem "rspec-instafail"
   gem "guard-rspec"
   gem "database_cleaner"
 end
