@@ -8,7 +8,7 @@
 	var end    = <%= video_segment.end_of %>;
 	var splice = true;
 	var played = false;
-	var url    = "http://www.youtube.com/v/" + id + "&start=" + start + "&end=" + end + "&autoplay=1&enablejsapi=1";
+	var url    = "http://www.youtube.com/v/" + id + "&start=" + start + "&end=" + end + "&autoplay=0&enablejsapi=1";
 
 	swfobject.embedSWF(url, "player", "640", "350", "8", null, null, { allowScriptAccess: "always" }, { id: "video" });
 

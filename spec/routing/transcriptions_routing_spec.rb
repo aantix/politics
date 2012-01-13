@@ -1,34 +1,34 @@
 require "spec_helper"
 
-describe TranscriptionsController do
+describe TransController do
   describe "routing" do
 
     it "routes to #index" do
-      get("/transcriptions").should route_to("transcriptions#index")
+      get("/trans").should route_to("trans#index")
     end
 
     it "routes to #new" do
-      get("/transcriptions/new").should route_to("transcriptions#new")
+      get("/trans/new").should route_to("trans#new")
     end
 
     it "routes to #show" do
-      get("/transcriptions/1").should route_to("transcriptions#show", :id => "1")
+      get("/trans/1").should route_to("trans#show", :id => "1")
     end
 
     it "routes to #edit" do
-      get("/transcriptions/1/edit").should route_to("transcriptions#edit", :id => "1")
+      get("/trans/1/edit").should route_to("trans#edit", :id => "1")
     end
 
     it "routes to #create" do
-      post("/transcriptions").should route_to("transcriptions#create")
+      post("/trans").should route_to("trans#create")
     end
 
     it "routes to #update" do
-      put("/transcriptions/1").should route_to("transcriptions#update", :id => "1")
+      put("/trans/1").should route_to("trans#update", :id => "1")
     end
 
     it "routes to #destroy" do
-      delete("/transcriptions/1").should route_to("transcriptions#destroy", :id => "1")
+      delete("/trans/1").should route_to("trans#destroy", :id => "1")
     end
 
   end

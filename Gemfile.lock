@@ -1,14 +1,4 @@
 GIT
-  remote: git://github.com/aantix/turkee.git
-  revision: 2a2022784832da40dc309a48dd722a461b142646
-  branch: turkee_rails31
-  specs:
-    turkee (1.1.1)
-      lockfile
-      rails (>= 3.1.1)
-      rturk (>= 2.3.0)
-
-GIT
   remote: git@github.com:aantix/nested_form.git
   revision: cf722a8a20db881c8c81176cfcc8e3a1edbe6142
   specs:
@@ -23,6 +13,14 @@ GIT
       jquery-rails (>= 1.0)
       less-rails (~> 2.1.0)
       railties
+
+PATH
+  remote: /Users/jjones/Projects/turkee
+  specs:
+    turkee (1.1.1)
+      lockfile
+      rails (>= 3.1.1)
+      rturk (>= 2.3.0)
 
 GEM
   remote: http://rubygems.org/

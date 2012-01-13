@@ -18,18 +18,18 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe TranscriptionsController, :type => :controller do
+describe TransController, :type => :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # Transcription. As you add validations to Transcription, be sure to
+  # Tran. As you add validations to Tran, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
     {}
   end
 
   describe "GET index" do
-    it "assigns all transcriptions as @transcriptions" do
-      transcription = Transcription.create! valid_attributes
+    it "assigns all trans as @trans" do
+      transcription = Tran.create! valid_attributes
       get :index
       assigns(:transcriptions).should eq([transcription])
     end
@@ -37,7 +37,7 @@ describe TranscriptionsController, :type => :controller do
 
   describe "GET show" do
     it "assigns the requested transcription as @transcription" do
-      transcription = Transcription.create! valid_attributes
+      transcription = Tran.create! valid_attributes
       get :show, :id => transcription.id
       assigns(:transcription).should eq(transcription)
     end
@@ -50,13 +50,13 @@ describe TranscriptionsController, :type => :controller do
 
     it "assigns a new transcription as @transcription" do
       get :new, :video_segment_id => @video_segment.id
-      assigns(:transcription).should be_a_new(Transcription)
+      assigns(:transcription).should be_a_new(Tran)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested transcription as @transcription" do
-      transcription = Transcription.create! valid_attributes
+      transcription = Tran.create! valid_attributes
       get :edit, :id => transcription.id
       assigns(:transcription).should eq(transcription)
     end
@@ -64,35 +64,35 @@ describe TranscriptionsController, :type => :controller do
 
   describe "POST create" do
     describe "with valid params" do
-      it "creates a new Transcription" do
+      it "creates a new Tran" do
         expect {
           post :create, :transcription => valid_attributes
-        }.to change(Transcription, :count).by(1)
+        }.to change(Tran, :count).by(1)
       end
 
       it "assigns a newly created transcription as @transcription" do
         post :create, :transcription => valid_attributes
-        assigns(:transcription).should be_a(Transcription)
+        assigns(:transcription).should be_a(Tran)
         assigns(:transcription).should be_persisted
       end
 
       it "redirects to the created transcription" do
         post :create, :transcription => valid_attributes
-        response.should redirect_to(Transcription.last)
+        response.should redirect_to(Tran.last)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved transcription as @transcription" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Transcription.any_instance.stub(:save).and_return(false)
+        Tran.any_instance.stub(:save).and_return(false)
         post :create, :transcription => {}
-        assigns(:transcription).should be_a_new(Transcription)
+        assigns(:transcription).should be_a_new(Tran)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Transcription.any_instance.stub(:save).and_return(false)
+        Tran.any_instance.stub(:save).and_return(false)
         post :create, :transcription => {}
         response.should render_template("new")
       end
@@ -102,23 +102,23 @@ describe TranscriptionsController, :type => :controller do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested transcription" do
-        transcription = Transcription.create! valid_attributes
-        # Assuming there are no other transcriptions in the database, this
-        # specifies that the Transcription created on the previous line
+        transcription = Tran.create! valid_attributes
+        # Assuming there are no other trans in the database, this
+        # specifies that the Tran created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Transcription.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        Tran.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
         put :update, :id => transcription.id, :transcription => {'these' => 'params'}
       end
 
       it "assigns the requested transcription as @transcription" do
-        transcription = Transcription.create! valid_attributes
+        transcription = Tran.create! valid_attributes
         put :update, :id => transcription.id, :transcription => valid_attributes
         assigns(:transcription).should eq(transcription)
       end
 
       it "redirects to the transcription" do
-        transcription = Transcription.create! valid_attributes
+        transcription = Tran.create! valid_attributes
         put :update, :id => transcription.id, :transcription => valid_attributes
         response.should redirect_to(transcription)
       end
@@ -126,17 +126,17 @@ describe TranscriptionsController, :type => :controller do
 
     describe "with invalid params" do
       it "assigns the transcription as @transcription" do
-        transcription = Transcription.create! valid_attributes
+        transcription = Tran.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Transcription.any_instance.stub(:save).and_return(false)
+        Tran.any_instance.stub(:save).and_return(false)
         put :update, :id => transcription.id, :transcription => {}
         assigns(:transcription).should eq(transcription)
       end
 
       it "re-renders the 'edit' template" do
-        transcription = Transcription.create! valid_attributes
+        transcription = Tran.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Transcription.any_instance.stub(:save).and_return(false)
+        Tran.any_instance.stub(:save).and_return(false)
         put :update, :id => transcription.id, :transcription => {}
         response.should render_template("edit")
       end
@@ -145,16 +145,16 @@ describe TranscriptionsController, :type => :controller do
 
   describe "DELETE destroy" do
     it "destroys the requested transcription" do
-      transcription = Transcription.create! valid_attributes
+      transcription = Tran.create! valid_attributes
       expect {
         delete :destroy, :id => transcription.id
-      }.to change(Transcription, :count).by(-1)
+      }.to change(Tran, :count).by(-1)
     end
 
-    it "redirects to the transcriptions list" do
-      transcription = Transcription.create! valid_attributes
+    it "redirects to the trans list" do
+      transcription = Tran.create! valid_attributes
       delete :destroy, :id => transcription.id
-      response.should redirect_to(transcriptions_url)
+      response.should redirect_to(trans_url)
     end
   end
 

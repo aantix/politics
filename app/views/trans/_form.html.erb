@@ -1,0 +1,68 @@
+<%= render :partial => 'accept_hit' %>
+
+<%= render :partial => 'instructions' %>
+
+<div class="row">
+  <div class="span16">
+    <%= turkee_nested_form_for(@transcription, params) do |f| %>
+        <fieldset>
+          <%= render :partial => 'errors' %>
+
+          <%= render :partial => 'video', :locals => {:video_segment => @transcription.video_segment} %>
+
+          <div class="alert-message block-message warning">
+            <%= f.hidden_field :video_segment_id, :value => @transcription.video_segment.id %>
+
+            <p>
+              <%= f.link_to_add "Add Speaker", :tran_segs, :class => 'btn large success', :disabled => @disabled %>
+            </p>
+
+            <%= f.fields_for :tran_segs do |segment| %>
+                <div class="row">
+                  <div class="clearfix fields">
+                    <%= f.label :candidate_id, "Who's speaking?" %>
+
+                    <div class="input">
+                        <% @candidates.in_groups_of(6).each do |group| %>
+                          <div class="row">
+                              <% group.each do |c| %>
+                                  <%= render :partial => 'candidates/candidate',
+                                             :object => c,
+                                             :locals => {:f => segment, :transcription => @transcription} unless c.nil? %>
+                              <% end %>
+                           </div>
+                        <% end %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="clearfix fields">
+                    <%= f.label :transcription %>
+                    <div class="input">
+                      <%= segment.text_area :transcription, :class => 'transcription_segments_transcription' %>
+                    </div>
+                  </div>
+                </div>
+
+                <%= segment.link_to_remove "Remove this Speaker" %>
+            <% end %>
+          </div>
+
+          <div class="clearfix">
+            <%= f.label :category_id, "What was the topic of this video segment?" %>
+            <div class="input">
+              <%= f.select :category_id,  @categories %>
+            </div>
+          </div>
+
+          <div class="actions">
+            <%= f.submit(nil, :class => 'btn large primary', :disabled => @disabled) %>
+          </div>
+
+        </fieldset>
+    <% end %>
+
+  </div>
+
+</div>

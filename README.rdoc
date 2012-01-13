@@ -24,7 +24,10 @@ There you will see the form that is presented to the Turkers.  That is all I hav
 
 
 == Requesting Work from the Turkers
-rake turkee:post_hit["https://www.yourapp.com","Please complete our survey","Tell us your favorite color.","Survey",100,0.05,2]
+title       = "I'm in need YOUR Help! Transcribe presidential campaign speeches for the hearing impaired."
+description = "I have a lot of campaign speeches that I would like to transcribe.  For this 60 segment, type in exactly what each candidate says."
+VideoSegment.reset_turk_tasks
+VideoSegment.create_turk_tasks(title,description,2,0.03,2)
 
 
 == Copyright

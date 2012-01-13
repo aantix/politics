@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe TranscriptionSegment do
+describe TranSeg do
   pending "add some examples to (or delete) #{__FILE__}"
 end

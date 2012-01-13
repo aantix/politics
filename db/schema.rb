@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120103101646) do
+ActiveRecord::Schema.define(:version => 20120109204159) do
 
   create_table "candidates", :force => true do |t|
     t.string   "name"
@@ -60,6 +60,30 @@ ActiveRecord::Schema.define(:version => 20120103101646) do
     t.datetime "updated_at"
   end
 
+  create_table "turkee_imported_assignments", :force => true do |t|
+    t.string   "assignment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "turkee_imported_assignments", ["assignment_id"], :name => "index_turkee_imported_assignments_on_assignment_id", :unique => true
+
+  create_table "turkee_tasks", :force => true do |t|
+    t.string   "hit_url"
+    t.boolean  "sandbox"
+    t.string   "task_type"
+    t.text     "hit_title"
+    t.text     "hit_description"
+    t.string   "hit_id"
+    t.decimal  "hit_reward",          :precision => 10, :scale => 2
+    t.integer  "hit_num_assignments"
+    t.integer  "hit_lifetime"
+    t.string   "form_url"
+    t.boolean  "complete"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "video_segments", :force => true do |t|
     t.integer  "video_id",            :null => false
     t.integer  "offset",              :null => false
@@ -67,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20120103101646) do
     t.integer  "human_validation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "turkee_task_id"
   end
 
   create_table "videos", :force => true do |t|

@@ -7,7 +7,9 @@ gem 'rails', '3.1.3'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-gem 'turkee', :git => 'git://github.com/aantix/turkee.git', :branch => 'turkee_rails31'
+#gem 'turkee', :git => 'git://github.com/aantix/turkee.git'
+gem 'turkee', :path => "/Users/jjones/Projects/turkee"
+
 gem 'youtube_search'
 gem 'nested_form', :git => "git@github.com:aantix/nested_form.git"
 
